@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegistroCChica{
+
     private String ccaja,fcrea,tcaja,depart;
     private double minicial;
 

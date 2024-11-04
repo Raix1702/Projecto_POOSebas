@@ -15,11 +15,11 @@ public class CajaChicaControlador {
         try (Connection conn = Conection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, ccaja);
-            pstmt.setString(2, fcrea);
-            pstmt.setString(3, tcaja);
-            pstmt.setString(4, depart);
-            pstmt.setDouble(5, minicial);
+            pstmt.setString(1, caja.getTcaja());
+            pstmt.setString(2, caja.getFcrea());
+            pstmt.setString(3, caja.getTcaja());
+            pstmt.setString(4, caja.getDepart());
+            pstmt.setDouble(5, caja.getMinicial());
             pstmt.executeUpdate();
 
 
