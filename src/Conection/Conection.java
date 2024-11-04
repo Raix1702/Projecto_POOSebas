@@ -33,5 +33,9 @@ public class Conection {
         Conection conexion = new Conection();
         conexion.getConnection();
     }
+
+    public void hola(){
+        System.out.println("Hola");
+    }
     
 }
