@@ -4,6 +4,8 @@
  */
 package Registrar_Caja_Chica;
 //Conectar base de datos
+import Controlador.CajaChicaControlador;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -189,21 +191,25 @@ public class Cuadro_Registrar_Caja_Chica extends javax.swing.JFrame {
     }//GEN-LAST:event_tcajaActionPerformed
 
     private void registrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar1ActionPerformed
-        RegistroCChica rcc = new RegistroCChica();
+
         try {
+        RegistroCChica rcc = new RegistroCChica();
         //crea una instancia de simpledate con la forma a ingresar dia mes año
         SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
         //Configurado para que no acepte fechas invalidas
         fecha.setLenient(false);
         //valida la fecha
         Date fechaCreacion = fecha.parse(fcrea.getText());
+        CajaChicaControlador caja = new CajaChicaControlador();
         
         rcc.setCcaja((ccaja.getText())); 
         rcc.setFcrea((fcrea.getText())); 
         rcc.setTcaja(tcaja.getSelectedItem().toString());
         rcc.setDepart(departamento.getSelectedItem().toString());
-        rcc.setMinicial(Double.parseDouble(minicial.getText())); 
-        rcc.Bd();
+        rcc.setMinicial(Double.parseDouble(minicial.getText()));
+
+        caja.insertar(rcc);
+
         
         
         JOptionPane.showMessageDialog(null, "Datos registrados exitosamente.");

@@ -34,12 +34,6 @@ public class Conection {
         conexion.getConnection();
     }
 
-    public void hola(){
-        System.out.println("Hola");
-    }
-    public void CHAU(){
-        System.out.println("Hola");
-    }
 
-    
+
 }
