@@ -37,5 +37,8 @@ public class Conection {
     public void hola(){
         System.out.println("Hola");
     }
+    public void CHAU(){
+        System.out.println("Hola");
+    }
     
 }
