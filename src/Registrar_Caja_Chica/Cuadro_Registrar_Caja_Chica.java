@@ -193,22 +193,29 @@ public class Cuadro_Registrar_Caja_Chica extends javax.swing.JFrame {
     private void registrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar1ActionPerformed
 
         try {
-        RegistroCChica rcc = new RegistroCChica();
-        //crea una instancia de simpledate con la forma a ingresar dia mes año
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-        //Configurado para que no acepte fechas invalidas
-        fecha.setLenient(false);
-        //valida la fecha
-        Date fechaCreacion = fecha.parse(fcrea.getText());
-        CajaChicaControlador caja = new CajaChicaControlador();
-        
-        rcc.setCcaja((ccaja.getText())); 
-        rcc.setFcrea((fcrea.getText())); 
-        rcc.setTcaja(tcaja.getSelectedItem().toString());
-        rcc.setDepart(departamento.getSelectedItem().toString());
-        rcc.setMinicial(Double.parseDouble(minicial.getText()));
+        	RegistroCChica rcc = new RegistroCChica();
+            
+            // Formato de entrada para la fecha (por ejemplo, 'dd/MM/yyyy')
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
+            formatoEntrada.setLenient(false); // No acepta fechas inválidas
+            
+            // Convierte y valida la fecha
+            Date fechaCreacion = formatoEntrada.parse(fcrea.getText()); // Lanza ParseException si la fecha es inválida
+            
+            // Convertir la fecha a String en formato 'yyyy-MM-dd' para MySQL
+            SimpleDateFormat formatoBD = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaFormateada = formatoBD.format(fechaCreacion);
+            
+            CajaChicaControlador caja = new CajaChicaControlador();
+            
+            // Asigna los valores, incluida la fecha formateada como String
+            rcc.setCcaja(ccaja.getText()); 
+            rcc.setFcrea(fechaFormateada); // Fecha como String en formato 'yyyy-MM-dd'
+            rcc.setTcaja(tcaja.getSelectedItem().toString());
+            rcc.setDepart(departamento.getSelectedItem().toString());
+            rcc.setMinicial(Double.parseDouble(minicial.getText()));
 
-        caja.insertar(rcc);
+            caja.insertar(rcc); // Inserta el objeto en la base de datos
 
         
         
